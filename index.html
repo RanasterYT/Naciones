@@ -362,9 +362,7 @@
                 setTimeout(() => {
                     btn.innerText = originalText;
                 }, 1500);
-            }).catch(() => {
-                alert('No se pudo copiar automáticamente. Copia manualmente.');
-            });
+            }).catch(() => {});
         }
 
         // Formatear timestamp a hora local legible
