@@ -311,7 +311,7 @@
             margin: 2rem 0 1rem;
         }
 
-        .join-button, .discord-button {
+        .join-button, .discord-button, .map-button {
             border: none;
             font-weight: bold;
             padding: 14px 28px;
@@ -348,6 +348,19 @@
             box-shadow: 0 9px 0 #2c3a9e;
         }
 
+        /* Nuevo botón del mapa */
+        .map-button {
+            background: linear-gradient(135deg, #8b5a2b, #5a3a1a);
+            color: #ffefc0;
+            box-shadow: 0 6px 0 #3a2a0a;
+        }
+
+        .map-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 9px 0 #3a2a0a;
+            background: linear-gradient(135deg, #a0703a, #6a4a2a);
+        }
+
         .info-note {
             background: #0e1a2a;
             border-radius: 20px;
@@ -368,7 +381,7 @@
         @media (max-width: 680px) {
             h1 { font-size: 2rem; }
             .hero { padding: 1.5rem; }
-            .join-button, .discord-button { font-size: 1rem; padding: 12px 20px; }
+            .join-button, .discord-button, .map-button { font-size: 1rem; padding: 12px 20px; }
         }
     </style>
 </head>
@@ -454,17 +467,18 @@
             </div>
         </div>
 
-        <!-- Botones duales: Unirse a Minecraft y Discord -->
+        <!-- Grupo de botones: Ahora con el botón del mapa -->
         <div class="button-group">
             <button id="joinButton" class="join-button">▶️ UNIRSE AL SERVIDOR</button>
-            <a id="discordLink" href="https://discord.gg/invite" target="_blank" class="discord-button">💬 DISCORD OFICIAL</a>
+            <a id="discordLink" href="https://discord.gg/tu-invite-aqui" target="_blank" class="discord-button">💬 DISCORD OFICIAL</a>
+            <a id="mapButton" href="https://TU_USUARIO.github.io/NOMBRE_REPO_MAPA/unmined.index.html" target="_blank" class="map-button">🗺️ VER MAPA MUNDIAL</a>
         </div>
         <div id="fallbackMessage" style="display: none; background: #4a2a2a; border-radius: 16px; padding: 10px; margin-top: 10px; text-align: center;">
             ⚠️ No se pudo abrir Minecraft automáticamente. Asegúrate de tener Minecraft Bedrock instalado.
         </div>
         <div class="info-note">
             💡 <strong>¿Problemas al conectarte?</strong> Si el botón no abre Minecraft, añade el servidor manualmente con los datos de arriba.<br>
-            📌 ¡Únete a nuestro Discord para participar en guerras, alianzas y eventos semanales!
+            📌 ¡Explora el mapa mundial de Velloria con uNmINeD y descubre todos los rincones del reino!
         </div>
     </div>
 
@@ -481,9 +495,13 @@
         port: "14854"
     };
 
-    // Enlace de Discord (CAMBIA ESTO POR TU INVITE REAL)
-    const DISCORD_INVITE = "https://discord.gg/tu-invite-aqui";  // Reemplazar con el enlace verdadero
+    // ========= ENLACES EXTERNOS =========
+    // CAMBIA ESTOS DOS ENLACES POR LOS REALES:
+    const DISCORD_INVITE = "https://discord.gg/yGJuZkrqmU";     // Tu invitación de Discord
+    const MAP_URL = "/mapa/index"; // URL del mapa generado con uNmINeD
+
     document.getElementById('discordLink').href = DISCORD_INVITE;
+    document.getElementById('mapButton').href = MAP_URL;
 
     // ========= REFERENCIAS DOM =========
     const statusBadge = document.getElementById('statusBadge');
