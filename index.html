@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>World of Nations | Velloria - Reino Elegante</title>
+    <title>World of Nations | Servidor Velloria - Guerra, Alianzas y Construcciones</title>
     <style>
         * {
             margin: 0;
@@ -95,25 +95,23 @@
             transform: translateY(-5px);
         }
 
-        /* Logo único y prominente */
+        /* Logo libre (sin círculo ni límites) */
         .logo-container {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .server-logo {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
-            object-fit: cover;
-            background: #111;
-            box-shadow: 0 0 0 4px rgba(200,160,80,0.5), 0 20px 30px rgba(0,0,0,0.5);
+            max-width: 90%;
+            height: auto;
+            display: inline-block;
+            filter: drop-shadow(0 8px 16px rgba(0,0,0,0.5));
             transition: all 0.4s;
             animation: float 5s ease-in-out infinite;
         }
 
         .server-logo:hover {
-            transform: scale(1.03);
-            box-shadow: 0 0 0 5px rgba(200,160,80,0.8), 0 25px 35px rgba(0,0,0,0.6);
+            transform: scale(1.02);
+            filter: drop-shadow(0 0 12px rgba(200,160,80,0.6));
             animation: subtleGlow 1.5s infinite alternate;
         }
 
@@ -128,7 +126,7 @@
             margin: 1rem 0;
         }
 
-        /* Imagen del reino */
+        /* Imagen del mapa */
         .kingdom-img {
             width: 100%;
             max-width: 800px;
@@ -149,7 +147,7 @@
             transform: scale(1.02);
         }
 
-        /* Grid de características elegante */
+        /* Grid de características */
         .features-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -389,26 +387,28 @@
         }
 
         @media (max-width: 680px) {
-            .server-logo { width: 100px; height: 100px; }
             .hero { padding: 1.8rem; }
             .join-button, .discord-button, .map-button { font-size: 0.9rem; padding: 10px 18px; }
             .feature-card h3 { font-size: 1.3rem; }
+            .server-logo { max-width: 80%; }
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <!-- Hero Section: Solo el logo, sin texto WORLD OF NATIONS -->
+    <!-- Hero Section: Logo libre sin círculo -->
     <div class="hero animate-on-scroll">
         <div class="logo-container">
-            <img class="server-logo" id="serverLogo" src="title.png" alt="Logo World of Nations" 
-                 onerror="this.onerror=null; this.src='title.png'">
+            <img class="server-logo" id="serverLogo" src="title.png" alt="World of Nations - Servidor Minecraft Bedrock" 
+                 onerror="this.onerror=null; this.src='https://via.placeholder.com/400x150?text=World+of+Nations'">
         </div>
-        <div class="tagline">✦ El Reino de Velloria • Guerra, Alianzas y Construcciones ✦</div>
+        <div class="tagline">✦ El Mapa Velloria • Servidor de Guerra, Alianzas y Construcciones ✦</div>
         <div class="kingdom-img">
-            <img src="mapa.png" alt="Velloria" onerror="this.src='https://via.placeholder.com/800x400?text=Velloria'">
+            <img src="mapa.png" alt="Velloria - Mapa del servidor" onerror="this.src='https://via.placeholder.com/800x400?text=Velloria+-+Mapa+del+Servidor'">
         </div>
-        <p style="margin-top: 1rem; font-size: 1.05rem; max-width: 700px; margin-left: auto; margin-right: auto;">Forja tu imperio, lidera alianzas épicas y construye la leyenda en <strong>Velloria</strong>. Un mundo donde cada bloque cuenta una historia de batallas y poder.</p>
+        <p style="margin-top: 1rem; font-size: 1.05rem; max-width: 700px; margin-left: auto; margin-right: auto;">
+            Sumérgete en <strong>World of Nations</strong>, un servidor de Minecraft Bedrock donde las naciones luchan por el poder, forman alianzas estratégicas y construyen imperios en el vasto mundo de <strong>Velloria</strong>. ¡La guerra, la política y la creatividad te esperan!
+        </p>
     </div>
 
     <!-- Grid de características -->
@@ -416,28 +416,28 @@
         <div class="feature-card animate-on-scroll">
             <div class="feature-icon">⚔️</div>
             <h3>Guerras de Naciones</h3>
-            <p>Conflictos estratégicos entre reinos, asedios y conquistas territoriales.</p>
+            <p>Conflictos estratégicos entre reinos, asedios y conquistas territoriales. ¡Demuestra tu poder!</p>
         </div>
         <div class="feature-card animate-on-scroll">
             <div class="feature-icon">🤝</div>
             <h3>Alianzas y Tratados</h3>
-            <p>Diplomacia, coaliciones, traiciones. La política define el mapa.</p>
+            <p>Diplomacia, coaliciones, traiciones. La política define el destino del servidor.</p>
         </div>
         <div class="feature-card animate-on-scroll">
             <div class="feature-icon">🏗️</div>
             <h3>Construcciones Épicas</h3>
-            <p>Castillos, ciudades y fortalezas que marcan la diferencia.</p>
+            <p>Castillos, ciudades y fortalezas que marcan la diferencia. ¡Construye tu legado!</p>
         </div>
         <div class="feature-card animate-on-scroll">
             <div class="feature-icon">🗺️</div>
             <h3>Mapa Velloria</h3>
-            <p>Un vasto mundo personalizado con biomas únicos y secretos.</p>
+            <p>Un vasto mundo personalizado con biomas únicos, recursos y secretos por descubrir.</p>
         </div>
     </div>
 
     <!-- Panel del servidor -->
     <div class="server-panel animate-on-scroll">
-        <h2 style="text-align: center; margin-bottom: 1.8rem; font-weight: 400; letter-spacing: 1px;">📡 Conecta al Reino</h2>
+        <h2 style="text-align: center; margin-bottom: 1.8rem; font-weight: 400; letter-spacing: 1px;">📡 Conecta al Servidor</h2>
         <div class="server-details">
             <div class="info-row">
                 <span class="label">📛 Nombre del servidor:</span>
@@ -489,13 +489,13 @@
             ⚠️ No se pudo abrir Minecraft automáticamente. Asegúrate de tener Minecraft Bedrock instalado.
         </div>
         <div class="info-note">
-            💡 <strong>¿Problemas al conectarte?</strong> Si el botón no abre Minecraft, añade el servidor manualmente.<br>
-            📌 Explora el mapa interactivo de Velloria y descubre todos los rincones del reino.
+            💡 <strong>¿Problemas al conectarte?</strong> Si el botón no abre Minecraft, añade el servidor manualmente con los datos de arriba.<br>
+            📌 Explora el mapa interactivo de Velloria y descubre todos los rincones del servidor.
         </div>
     </div>
 
     <footer>
-        ⚔️ World of Nations • Un mundo de guerra, política y creatividad en Velloria • Juega ahora en Minecraft Bedrock
+        ⚔️ World of Nations • Un servidor de guerra, política y creatividad en Velloria • Juega ahora en Minecraft Bedrock
     </footer>
 </div>
 
@@ -510,7 +510,7 @@
     // ========= ENLACES EXTERNOS =========
     const DISCORD_INVITE = "https://discord.gg/yGJuZkrqmU";
     const MAP_URL = "./mapa/";
-    const LOGO_URL = "title";  // Reemplaza con tu logo real
+    const LOGO_URL = "title.png";  // Reemplaza con la ruta de tu logo real (imagen con texto)
 
     document.getElementById('discordLink').href = DISCORD_INVITE;
     document.getElementById('mapButton').href = MAP_URL;
@@ -578,7 +578,7 @@
                 statusBadge.innerHTML = '🟢 ONLINE';
                 playersValue.innerText = `${data.players?.online ?? 0} / ${data.players?.max ?? 0}`;
                 versionValue.innerText = `${data.version?.name ?? 'Desconocida'} (protocolo ${data.version?.protocol ?? '?'})`;
-                let cleanMotd = data.motd?.clean ?? 'Bienvenido a Velloria';
+                let cleanMotd = data.motd?.clean ?? 'Bienvenido a World of Nations';
                 motdValue.innerHTML = escapeHtml(cleanMotd);
                 lastUpdateTimeSpan.innerText = data.retrieved_at ? `Última actualización: ${formatTime(data.retrieved_at)}` : 'Actualizado ahora';
             } else {
@@ -586,7 +586,7 @@
                 statusBadge.innerHTML = '🔴 OFFLINE';
                 playersValue.innerText = 'Servidor caído';
                 versionValue.innerText = 'No disponible';
-                motdValue.innerHTML = 'El reino está en reposo... Vuelve pronto.';
+                motdValue.innerHTML = 'El servidor está en mantenimiento o apagado. Vuelve pronto.';
                 lastUpdateTimeSpan.innerText = data.retrieved_at ? `Último intento: ${formatTime(data.retrieved_at)}` : 'Sin conexión.';
             }
         } catch (error) {
