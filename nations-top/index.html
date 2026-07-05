@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Top Naciones - WorldOfNations</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #0d0d1a;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+        .container { max-width: 1100px; margin: 0 auto; }
+        h1 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #f7d44a;
+            text-shadow: 0 0 20px rgba(247, 212, 74, 0.4);
+            margin-bottom: 30px;
+        }
+        .section {
+            background: #1a1a2e;
+            border-radius: 16px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        .section h2 {
+            font-size: 1.8rem;
+            border-bottom: 2px solid #3a3a5e;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            color: #b8b8ff;
+        }
+        .nation-card {
+            background: #252540;
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin-bottom: 12px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            transition: background 0.2s;
+        }
+        .nation-card:hover { background: #2f2f50; }
+        .nation-card .left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .nation-card .medal {
+            font-size: 1.8rem;
+            width: 40px;
+            text-align: center;
+        }
+        .nation-card .name {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: #ffd966;
+        }
+        .nation-card .details {
+            color: #aaa;
+            font-size: 0.9rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .nation-card .details span {
+            background: #1e1e38;
+            padding: 2px 10px;
+            border-radius: 20px;
+        }
+        .members-list {
+            color: #8af;
+            font-size: 0.85rem;
+            margin-top: 4px;
+        }
+        .top-card-1 { border-left: 6px solid #ffd700; }
+        .top-card-2 { border-left: 6px solid #c0c0c0; }
+        .top-card-3 { border-left: 6px solid #cd7f32; }
+        .loading, .error {
+            text-align: center;
+            font-size: 1.5rem;
+            padding: 40px;
+        }
+        .error { color: #ff6b6b; }
+        .footer {
+            text-align: center;
+            color: #555;
+            margin-top: 30px;
+            font-size: 0.9rem;
+        }
+        @media (max-width: 700px) {
+            .nation-card { flex-direction: column; align-items: flex-start; gap: 8px; }
+            .nation-card .details { gap: 6px; }
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>🏆 Top Naciones - WorldOfNations</h1>
+    <div id="content">
+        <div class="loading">⏳ Cargando datos...</div>
+    </div>
+    <div class="footer">Datos actualizados desde el servidor en tiempo real</div>
+</div>
+
+<script>
+    // Reemplaza con la URL de tu backend en Render
+    const API_URL = 'https://tu-api.onrender.com/api/nations';
+
+    async function loadData() {
+        try {
+            const response = await fetch(API_URL);
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            const data = await response.json();
+            renderData(data);
+        } catch (error) {
+            document.getElementById('content').innerHTML =
+                `<div class="error">❌ Error al cargar los datos: ${error.message}</div>`;
+        }
+    }
+
+    function renderData(data) {
+        const { timestamp, totalNations, top10, allNations } = data;
+        const medals = ['🥇','🥈','🥉','4️⃣','5️⃣','6️⃣','7️⃣','8️⃣','9️⃣','🔟'];
+
+        let html = `<div class="section"><h2>🏅 Top 10 Naciones</h2>`;
+        if (!top10 || top10.length === 0) {
+            html += `<p style="color:#aaa;">No hay naciones aún.</p>`;
+        } else {
+            top10.forEach((n, i) => {
+                const cls = i === 0 ? 'top-card-1' : i === 1 ? 'top-card-2' : i === 2 ? 'top-card-3' : '';
+                html += `
+                    <div class="nation-card ${cls}">
+                        <div class="left">
+                            <span class="medal">${medals[i] || ''}</span>
+                            <span class="name">${n.name}</span>
+                        </div>
+                        <div class="details">
+                            <span>👑 ${n.creator}</span>
+                            <span>🏛️ ${n.nivel}</span>
+                            <span>👥 ${n.population}</span>
+                            <span>💰 ${n.nationalWealth}</span>
+                            <span>⭐ ${n.totalScore}</span>
+                        </div>
+                        <div class="members-list">Miembros: ${n.members.join(', ')}</div>
+                    </div>
+                `;
+            });
+        }
+        html += `</div>`;
+
+        // Todas las naciones
+        html += `<div class="section"><h2>📋 Todas las Naciones (${totalNations})</h2>`;
+        if (!allNations || allNations.length === 0) {
+            html += `<p style="color:#aaa;">No hay naciones registradas.</p>`;
+        } else {
+            allNations.forEach(n => {
+                html += `
+                    <div class="nation-card">
+                        <div class="left">
+                            <span class="name">${n.name}</span>
+                        </div>
+                        <div class="details">
+                            <span>👑 ${n.creator}</span>
+                            <span>🏛️ ${n.nivel}</span>
+                            <span>👥 ${n.population}</span>
+                            <span>⭐ ${n.totalScore}</span>
+                        </div>
+                        <div class="members-list">Miembros: ${n.members.join(', ')}</div>
+                    </div>
+                `;
+            });
+        }
+        html += `</div>`;
+
+        html += `<p style="text-align:right;color:#666;font-size:0.9rem;">🕒 Última actualización: ${new Date(timestamp).toLocaleString()}</p>`;
+        document.getElementById('content').innerHTML = html;
+    }
+
+    // Carga inicial
+    loadData();
+    // Actualizar cada 60 segundos
+    setInterval(loadData, 60000);
+</script>
+</body>
+</html>
